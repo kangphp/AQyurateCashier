@@ -46,6 +46,7 @@ public class frmMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(25, 26, 35));
         setResizable(false);
 
         btnOrder.setIcon(new javax.swing.ImageIcon("C:\\Users\\User-PC\\Downloads\\Shopping cart(1).png")); // NOI18N
@@ -87,6 +88,7 @@ public class frmMenu extends javax.swing.JFrame {
         );
 
         pnlSalesToday.setBackground(new java.awt.Color(217, 217, 217));
+        pnlSalesToday.setForeground(new java.awt.Color(255, 255, 255));
         pnlSalesToday.setRoundBottomLeft(30);
         pnlSalesToday.setRoundBottomRight(30);
         pnlSalesToday.setRoundTopLeft(30);
