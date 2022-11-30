@@ -1,4 +1,4 @@
-package javaswingdev;
+package customUI;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -68,7 +68,7 @@ public class SimpleTitleBar extends javax.swing.JPanel {
     private void initComponents() {
 
         panelMove = new javax.swing.JPanel();
-        simpleButtonBar1 = new javaswingdev.SimpleButtonBar();
+        simpleButtonBar1 = new customUI.SimpleButtonBar();
 
         setBackground(new java.awt.Color(50, 50, 50));
 
@@ -78,7 +78,7 @@ public class SimpleTitleBar extends javax.swing.JPanel {
         panelMove.setLayout(panelMoveLayout);
         panelMoveLayout.setHorizontalGroup(
             panelMoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 865, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
         panelMoveLayout.setVerticalGroup(
             panelMoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,6 +106,6 @@ public class SimpleTitleBar extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel panelMove;
-    private javaswingdev.SimpleButtonBar simpleButtonBar1;
+    private customUI.SimpleButtonBar simpleButtonBar1;
     // End of variables declaration//GEN-END:variables
 }

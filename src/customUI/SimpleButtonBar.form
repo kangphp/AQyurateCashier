@@ -92,16 +92,16 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javaswingdev.Buttont" name="cmdClose">
+    <Component class="customUI.Buttont" name="cmdClose">
       <Properties>
         <Property name="hoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="30" green="30" red="ff" type="rgb"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javaswingdev.Buttont" name="cmdResize">
+    <Component class="customUI.Buttont" name="cmdResize">
     </Component>
-    <Component class="javaswingdev.Buttont" name="cmdMinimize">
+    <Component class="customUI.Buttont" name="cmdMinimize">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">

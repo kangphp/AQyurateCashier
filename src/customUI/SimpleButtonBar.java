@@ -1,4 +1,4 @@
-package javaswingdev;
+package customUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,9 +60,9 @@ public class SimpleButtonBar extends javax.swing.JPanel {
         iconMax = new javaswingdev.GoogleMaterialIcon();
         iconMinimize = new javaswingdev.GoogleMaterialIcon();
         iconRestore = new javaswingdev.GoogleMaterialIcon();
-        cmdClose = new javaswingdev.Buttont();
-        cmdResize = new javaswingdev.Buttont();
-        cmdMinimize = new javaswingdev.Buttont();
+        cmdClose = new customUI.Buttont();
+        cmdResize = new customUI.Buttont();
+        cmdMinimize = new customUI.Buttont();
 
         iconClose.setColor1(new java.awt.Color(111, 111, 111));
         iconClose.setColor2(new java.awt.Color(215, 215, 215));
@@ -108,9 +108,9 @@ public class SimpleButtonBar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswingdev.Buttont cmdClose;
-    private javaswingdev.Buttont cmdMinimize;
-    private javaswingdev.Buttont cmdResize;
+    private customUI.Buttont cmdClose;
+    private customUI.Buttont cmdMinimize;
+    private customUI.Buttont cmdResize;
     private javaswingdev.GoogleMaterialIcon iconClose;
     private javaswingdev.GoogleMaterialIcon iconMax;
     private javaswingdev.GoogleMaterialIcon iconMinimize;
