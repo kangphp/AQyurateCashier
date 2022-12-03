@@ -36,6 +36,46 @@ public class ItemController {
         return result;
     }
     
+    public Item getById(int itemID){
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(itemID));
+        Item barang = null;
+        
+        rs = koneksi.executeSelect("SELECT * FROM items WHERE item_id = ?", data);
+        if(rs != null){
+            try{
+                while(rs.next()){
+                    Timestamp timestamp = rs.getTimestamp(5);
+                    barang = new Item(rs.getString(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            Integer.valueOf(rs.getString(4))
+                        );
+                    break;
+                } 
+            }catch (Exception ex){
+                
+            }
+        }
+        return barang;
+    }
+    
+    public Boolean addItem (Item barang)
+    {
+        ArrayList<String> data = new ArrayList<String>();
+        
+        data.add(String.valueOf(barang.getItemID()));
+        data.add(barang.getCodeCat());
+        data.add(barang.getName());
+        data.add(String.valueOf(barang.getPrice()));
+        
+        
+        if (koneksi.execute("INSERT INTO items (item_id, code_cat, name, price) VALUES (?, ?, ?, ?)", data)){
+            return true;
+        } else {
+            return false;
+        }
+    }
     public void close(){
         koneksi.stop();
     }

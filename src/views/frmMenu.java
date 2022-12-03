@@ -15,7 +15,7 @@ public class frmMenu extends javax.swing.JFrame {
         initComponents();
         
         custTitleBar.init(this);
-                
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         updateTimer = new Timer(DELAY, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -30,8 +30,28 @@ public class frmMenu extends javax.swing.JFrame {
         });
         
         updateTimer.start();
+        
+        fieldInputID.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    //tampilkanInfoMember(fieldInputID.getText());
+                    fieldInputID.requestFocusInWindow();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+            
+        });
     }
-    
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,8 +61,8 @@ public class frmMenu extends javax.swing.JFrame {
         lblTime = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         pnlBody = new javax.swing.JPanel();
-        btnOrder = new javax.swing.JButton();
-        btnInventory = new javax.swing.JButton();
+        btnInventory = new customUI.Buttont();
+        fieldInputID = new customUI.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(25, 182, 214));
@@ -87,13 +107,20 @@ public class frmMenu extends javax.swing.JFrame {
 
         pnlBody.setBackground(new java.awt.Color(25, 26, 35));
 
-        btnOrder.setIcon(new javax.swing.ImageIcon("C:\\Users\\User-PC\\Downloads\\Shopping cart(1).png")); // NOI18N
-        btnOrder.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
+        btnInventory.setBackground(new java.awt.Color(92, 92, 92));
+        btnInventory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnInventory.setForeground(new java.awt.Color(0, 0, 0));
         btnInventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Inventory.png"))); // NOI18N
         btnInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInventoryActionPerformed(evt);
+            }
+        });
+
+        fieldInputID.setLabelText("Kode :");
+        fieldInputID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldInputIDActionPerformed(evt);
             }
         });
 
@@ -102,20 +129,23 @@ public class frmMenu extends javax.swing.JFrame {
         pnlBodyLayout.setHorizontalGroup(
             pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBodyLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addGroup(pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(fieldInputID, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBodyLayout.setVerticalGroup(
             pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBodyLayout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(608, Short.MAX_VALUE))
+                .addGroup(pnlBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBodyLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlBodyLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(fieldInputID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(899, 899, 899))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,9 +171,14 @@ public class frmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventoryActionPerformed
+
         new frmInventory().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInventoryActionPerformed
+
+    private void fieldInputIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldInputIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldInputIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,14 +187,15 @@ public class frmMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmMenu().setVisible(true);
+                //new frmMenu().setExtendedState();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInventory;
-    private javax.swing.JButton btnOrder;
+    private customUI.Buttont btnInventory;
     private customUI.SimpleTitleBar custTitleBar;
+    private customUI.TextField fieldInputID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblTime;
     private javax.swing.JPanel pnlBody;

@@ -40,7 +40,7 @@ public class TextField extends JTextField {
     private float location;
     private boolean show;
     private boolean mouseOver = false;
-    private String labelText = "Label";
+    private String labelText = "Awikwok";
     private Color lineColor = new Color(3, 155, 216);
 
     public TextField() {
