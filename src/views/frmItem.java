@@ -4,6 +4,7 @@ import utils.ConstUtil;
 import models.Item;
 import controllers.ItemController;
 import controllers.CategoryController;
+import controllers.StockController;
 import javax.swing.table.*;
 import javax.swing.*;
 import java.awt.*;
@@ -12,9 +13,9 @@ import java.awt.event.*;
 import java.util.*;
 import models.Category;
 
-public class frmInventory extends javax.swing.JFrame {
+public class frmItem extends javax.swing.JFrame {
 
-    public frmInventory() {
+    public frmItem() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         titleBar.init(this);
@@ -31,7 +32,7 @@ public class frmInventory extends javax.swing.JFrame {
         btnBack = new customUI.Buttont();
         btnEdit = new customUI.Buttont();
         btnRefresh = new customUI.Buttont();
-        buttont1 = new customUI.Buttont();
+        btnDelete = new customUI.Buttont();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbItems = new customUI.TableDark();
 
@@ -50,7 +51,7 @@ public class frmInventory extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Inventory");
+        jLabel1.setText("Item");
 
         btnAdd.setBackground(new java.awt.Color(25, 26, 35));
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,12 +102,17 @@ public class frmInventory extends javax.swing.JFrame {
             }
         });
 
-        buttont1.setForeground(new java.awt.Color(255, 255, 255));
-        buttont1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8-remove-48.png"))); // NOI18N
-        buttont1.setText("Delete Item");
-        buttont1.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 12)); // NOI18N
-        buttont1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        buttont1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8-remove-48.png"))); // NOI18N
+        btnDelete.setText("Delete Item");
+        btnDelete.setFont(new java.awt.Font("Plus Jakarta Sans ExtraBold", 0, 12)); // NOI18N
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         tbItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +122,7 @@ public class frmInventory extends javax.swing.JFrame {
                 "ID Item", "Kategori", "Nama Barang", "Harga"
             }
         ));
+        tbItems.setFont(new java.awt.Font("Plus Jakarta Sans SemiBold", 1, 24)); // NOI18N
         jScrollPane2.setViewportView(tbItems);
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
@@ -137,7 +144,7 @@ public class frmInventory extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buttont1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
                         .addComponent(jScrollPane2)
@@ -154,7 +161,7 @@ public class frmInventory extends javax.swing.JFrame {
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttont1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
@@ -181,8 +188,10 @@ public class frmInventory extends javax.swing.JFrame {
     
     ItemController ic = new ItemController();
     CategoryController cc = new CategoryController();
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    StockController oc = new StockController();
+    
+    public void showDataDisplay()
+    {
        DefaultTableModel li = (DefaultTableModel) tbItems.getModel();
        li.setRowCount(0);
        tbItems.setModel(li);
@@ -211,8 +220,9 @@ public class frmInventory extends javax.swing.JFrame {
        } else {
            System.out.print(items);
        }
-       
-      
+    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+      showDataDisplay();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -236,14 +246,15 @@ public class frmInventory extends javax.swing.JFrame {
             String category = tm.getValueAt(i, 1).toString();
             String name = tm.getValueAt(i, 2).toString();
             String itemPrice = tm.getValueAt(i, 3).toString();
+            
             frameItem.cmbCat.setSelectedItem(category);
             frameItem.txtID.setText(itemID);
             frameItem.txtName.setText(name);
-            //frameItem.cmbCat.addItem(category);
             frameItem.txtPrice.setText(itemPrice);
             frameItem.setVisible(true);
+            
             this.dispose();
-            tm.getValueAt(i, 0).toString();
+            
         } catch (ArrayIndexOutOfBoundsException e)
         {
             MessageError me = new MessageError(this, true);
@@ -254,41 +265,46 @@ public class frmInventory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-       DefaultTableModel li = (DefaultTableModel) tbItems.getModel();
-       li.setRowCount(0);
-       tbItems.setModel(li);
-       
-       ArrayList<Item> items = ic.getAllItems();
-        
-       if (items.size() > 0)
-       {
-           int no = 0;
-           String cat = "";
-           for (Item i : items)
-           {
-               no++;              
-               ArrayList<Category> catName = cc.getCategory();
-               
-               for (Category x : catName)
-               {
-                   if (x.getCatID().equals(i.getCodeCat()))
-                   {
-                       cat = x.getCatName();
-                   }
-               }
-               li.addRow(new Object[]{i.getItemID(), cat, i.getName(), i.getPrice()});
-               tbItems.setModel(li);
-           }
-       } else {
-           System.out.print(items);
-       }
+       showDataDisplay();
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        frmEditItem frameItem = new frmEditItem();
+        int i = tbItems.getSelectedRow();
+        TableModel tm = tbItems.getModel();
+        
+        try
+        {
+            String itemID = tm.getValueAt(i, 0).toString();
+            String name = tm.getValueAt(i, 2).toString();
+            
+            if (ic.deleteItem(itemID))
+            {
+                MessageSuccess me = new MessageSuccess(this,true);
+                me.jLabel2.setText("Sukses");
+                me.jLabel3.setText("Berhasil Menghapus Barang ["+ itemID +" - "+ name +"]  !");
+                me.showAlert();
+                
+                showDataDisplay();
+            } else {
+                MessageError me = new MessageError(this, true);
+                me.jLabel2.setText("Gagal");
+                me.jLabel3.setText("Silahkan Hubungi Developer!");
+                me.showAlert();
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            MessageError me = new MessageError(this, true);
+            me.jLabel2.setText("Gagal");
+            me.jLabel3.setText("Pilih Salah Satu Data Terlebih Dahulu!");
+            me.showAlert();
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmInventory().setVisible(true);
+                new frmItem().setVisible(true);
             }
         });
     }
@@ -296,9 +312,9 @@ public class frmInventory extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private customUI.Buttont btnAdd;
     private customUI.Buttont btnBack;
+    private customUI.Buttont btnDelete;
     private customUI.Buttont btnEdit;
     private customUI.Buttont btnRefresh;
-    private customUI.Buttont buttont1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnlMain;

@@ -36,7 +36,7 @@ public class ItemController {
         return result;
     }
     
-    public Item getById(int itemID){
+    public Item getById(String itemID){
         ArrayList<String> data = new ArrayList<String>();
         data.add(String.valueOf(itemID));
         Item barang = null;
@@ -45,11 +45,12 @@ public class ItemController {
         if(rs != null){
             try{
                 while(rs.next()){
-                    Timestamp timestamp = rs.getTimestamp(5);
-                    barang = new Item(rs.getString(1),
-                            rs.getString(2),
-                            rs.getString(3),
-                            Integer.valueOf(rs.getString(4))
+                    
+                    barang = new Item(
+                            rs.getString("item_id"),
+                            rs.getString("code_cat"),
+                            rs.getString("name"),
+                            rs.getInt("price")
                         );
                     break;
                 } 
@@ -76,6 +77,31 @@ public class ItemController {
             return false;
         }
     }
+    
+    public Boolean updateItem(String item_id, String code_cat, String name, String price){
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(code_cat);
+        data.add(name);
+        data.add(price);
+        data.add(item_id);
+        
+        if (koneksi.execute("UPDATE items SET code_cat = ?, name = ?, price = ? WHERE item_id = ?", data)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public Boolean deleteItem(String item_id){
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(item_id);
+        if (koneksi.execute("DELETE FROM items WHERE item_id = ?", data)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public void close(){
         koneksi.stop();
     }

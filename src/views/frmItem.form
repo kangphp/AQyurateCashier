@@ -79,7 +79,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="btnEdit" min="-2" pref="96" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="buttont1" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="btnDelete" min="-2" pref="96" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -102,7 +102,7 @@
                       <Component id="btnAdd" min="-2" pref="96" max="-2" attributes="0"/>
                       <Component id="btnRefresh" min="-2" pref="96" max="-2" attributes="0"/>
                       <Component id="btnEdit" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
-                      <Component id="buttont1" min="-2" pref="96" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" pref="96" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" pref="754" max="32767" attributes="0"/>
@@ -120,7 +120,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Inventory"/>
+            <Property name="text" type="java.lang.String" value="Item"/>
           </Properties>
         </Component>
         <Component class="customUI.Buttont" name="btnAdd">
@@ -204,7 +204,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshActionPerformed"/>
           </Events>
         </Component>
-        <Component class="customUI.Buttont" name="buttont1">
+        <Component class="customUI.Buttont" name="btnDelete">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -219,6 +219,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
@@ -260,6 +263,9 @@
                       <Renderer/>
                     </Column>
                   </TableColumnModel>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Plus Jakarta Sans SemiBold" size="24" style="1"/>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

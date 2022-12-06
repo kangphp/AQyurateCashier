@@ -86,4 +86,8 @@ public class Buttont extends JButton {
         g2.dispose();
         super.paintComponent(grphcs);
     }
+
+    public void setLocation(double d, double d0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

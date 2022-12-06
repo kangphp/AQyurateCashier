@@ -183,7 +183,7 @@ public class frmEditItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new frmInventory().setVisible(true);
+        new frmItem().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -205,13 +205,12 @@ public class frmEditItem extends javax.swing.JFrame {
                     catCode = x.getCatID();
                 }
             }
-
-            Item item = new Item(txtID.getText(), catCode, txtName.getText(), Integer.valueOf(txtPrice.getText()));
-            if (ic.addItem(item))
+            
+            if (ic.updateItem(txtID.getText(), catCode, txtName.getText(),txtPrice.getText()))
             {
                 MessageSuccess me = new MessageSuccess(this,true);
                 me.jLabel2.setText("Sukses");
-                me.jLabel3.setText("Berhasil Menambahkan Barang ["+ txtID.getText() +" - "+ txtName.getText() +"]  !");
+                me.jLabel3.setText("Berhasil Mengubah Barang ["+ txtID.getText() +" - "+ txtName.getText() +"]  !");
                 me.showAlert();
             } else {
                 MessageError me = new MessageError(this, true);

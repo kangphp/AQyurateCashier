@@ -6,6 +6,7 @@ import java.util.*;
 import models.Item;
 import controllers.ItemController;
 import controllers.CategoryController;
+import java.awt.event.*;
 import models.Category;
 
 public class frmAddItem extends javax.swing.JFrame {
@@ -23,7 +24,27 @@ public class frmAddItem extends javax.swing.JFrame {
         for(Category x: category)
         {
             cmbCat.addItem(x.getCatName());
-        }        
+        }      
+        
+        txtID.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    //tampilkanInfoMember(fieldInputID.getText());
+                    txtID.requestFocusInWindow();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+            
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -196,7 +217,7 @@ public class frmAddItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new frmInventory().setVisible(true);
+        new frmItem().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
